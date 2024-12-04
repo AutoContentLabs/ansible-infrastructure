@@ -40,6 +40,11 @@ git push
 ```
 
 ```
+python -m venv .venv
+pip install ansible
+```
+
+```
 # Playbook'u çalıştır
 ansible-playbook ansible/playbook.yml
 ```
