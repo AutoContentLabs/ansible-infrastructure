@@ -1,0 +1,21 @@
+[submodule "services/fetcher"]
+	path = services/fetcher
+	url = https://github.com/AutoContentLabs/fetcher.git
+[submodule "services/messaging-utils"]
+	path = services/messaging-utils
+	url = https://github.com/AutoContentLabs/messaging-utils.git
+[submodule "services/messaging"]
+	path = services/messaging
+	url = https://github.com/AutoContentLabs/messaging.git
+[submodule "services/databases"]
+	path = services/databases
+	url = https://github.com/AutoContentLabs/databases.git
+[submodule "services/data-collection-service"]
+	path = services/data-collection-service
+	url = https://github.com/AutoContentLabs/data-collection-service.git
+[submodule "services/data-processing-hub"]
+	path = services/data-processing-hub
+	url = https://github.com/AutoContentLabs/data-processing-hub.git
+[submodule "services/job-scheduler-service"]
+	path = services/job-scheduler-service
+	url = https://github.com/AutoContentLabs/job-scheduler-service.git
