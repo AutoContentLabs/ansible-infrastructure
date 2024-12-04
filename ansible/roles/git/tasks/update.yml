@@ -1,57 +1,27 @@
 # roles/git/tasks/update.yml
 
-- name: Update messaging service
-  shell: npm update
-  args:
-    chdir: "../services/messaging"
-  ignore_errors: yes
+- name: Ensure git submodules are initialized and updated
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.path }}"
+    version: main
+    update: yes
+    recursive: yes
+  loop:
+    - { path: "services/fetcher", url: "https://github.com/AutoContentLabs/fetcher.git" }
+    - { path: "services/messaging-utils", url: "https://github.com/AutoContentLabs/messaging-utils.git" }
+    - { path: "services/messaging", url: "https://github.com/AutoContentLabs/messaging.git" }
+    - { path: "services/databases", url: "https://github.com/AutoContentLabs/databases.git" }
+    - { path: "services/data-collection-service", url: "https://github.com/AutoContentLabs/data-collection-service.git" }
+    - { path: "services/data-processing-hub", url: "https://github.com/AutoContentLabs/data-processing-hub.git" }
+    - { path: "services/job-scheduler-service", url: "https://github.com/AutoContentLabs/job-scheduler-service.git" }
 
-- name: Git commit and push for messaging service
-  shell: |
-    git add package-lock.json
-    git commit -m "chore: update package to latest"
-    git push
+- name: Update git submodules recursively
+  command: git submodule update --remote --recursive
   args:
-    chdir: "../services/messaging"
+    chdir: "{{ playbook_dir }}"
+  when: git_submodules_updated.rc == 0
 
-- name: Update data collection service
-  shell: npm update
-  args:
-    chdir: "../services/data-collection-service"
-  ignore_errors: yes
-
-- name: Git commit and push for data collection service
-  shell: |
-    git add package-lock.json
-    git commit -m "chore: update package to latest"
-    git push
-  args:
-    chdir: "../services/data-collection-service"
-
-- name: Update data processing hub service
-  shell: npm update
-  args:
-    chdir: "../services/data-processing-hub"
-  ignore_errors: yes
-
-- name: Git commit and push for data processing hub service
-  shell: |
-    git add package-lock.json
-    git commit -m "chore: update package to latest"
-    git push
-  args:
-    chdir: "../services/data-processing-hub"
-
-- name: Update job scheduler service
-  shell: npm update
-  args:
-    chdir: "../services/job-scheduler-service"
-  ignore_errors: yes
-
-- name: Git commit and push for job scheduler service
-  shell: |
-    git add package-lock.json
-    git commit -m "chore: update package to latest"
-    git push
-  args:
-    chdir: "../services/job-scheduler-service"
+- name: Print git submodule update completion message
+  debug:
+    msg: "All git submodules have been successfully updated."

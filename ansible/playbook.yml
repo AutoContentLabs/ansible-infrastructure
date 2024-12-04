@@ -4,8 +4,8 @@
   hosts: localhost
   become: true
   tasks:
-    # - name: Update nodejs package
-    #   include_tasks: roles/git/tasks/update.yml
+    - name: Update git module and package
+      include_tasks: roles/git/tasks/update.yml
 
     - name: Clean up Docker environment
       include_tasks: roles/docker/tasks/clean.yml
