@@ -12,6 +12,10 @@
   command: docker images -q --filter "dangling=true"
   register: docker_images_q
 
+- name: Gather list of all volumes
+  command: docker volume ls -q
+  register: docker_volumes 
+
 - name: Stop all running containers
   shell: docker stop $(docker ps -q)
   when: docker_ps_q.stdout != ''
@@ -24,6 +28,11 @@
 
 - name: Remove unused volumes
   command: docker volume prune -f
+
+- name: Remove unused volumes
+  command: docker volume rm {{ item }}
+  loop: "{{ docker_volumes.stdout_lines }}"
+  when: docker_volumes.stdout != ''
   ignore_errors: yes
 
 - name: Remove unused images
@@ -37,4 +46,5 @@
 
 - name: Print cleanup completion message
   debug:
-    msg: "All containers and volumes have been successfully removed."
+    msg: "All containers, volumes, images, and networks have been successfully removed."
+
