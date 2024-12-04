@@ -1,0 +1,5 @@
+- name: Perform updates and manage Docker
+  hosts: localhost
+  become: true
+  roles:
+    - docker

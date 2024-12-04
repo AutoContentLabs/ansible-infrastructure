@@ -1,0 +1,16 @@
+- name: Create shared Docker network if not exists
+  command: docker network create network_shared
+  when: ansible_facts.docker_networks['network_shared'] is not defined
+  ignore_errors: yes
+
+- name: Start databases service
+  command: docker-compose -f ../services/databases/docker-compose.yml up -d
+
+- name: Start data collection service
+  command: docker-compose -f ../services/data-collection-service/.docker/production/docker-compose.yml up -d
+
+- name: Start data processing hub service
+  command: docker-compose -f ../services/data-processing-hub/.docker/production/docker-compose.yml up -d
+
+- name: Start job scheduler service
+  command: docker-compose -f ../services/job-scheduler-service/.docker/production/docker-compose.yml up -d
