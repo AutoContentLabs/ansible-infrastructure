@@ -6,7 +6,7 @@
   ignore_errors: yes
 
 - name: Start databases service
-  command: docker-compose -f ../services/databases/docker-compose.yml up -d
+  command: docker-compose -f ../services/databases/.docker/production/docker-compose.yml up -d
 
 - name: Start data collection service
   command: docker-compose -f ../services/data-collection-service/.docker/production/docker-compose.yml up -d
