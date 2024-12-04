@@ -1,0 +1,69 @@
+# roles/git/tasks/update.yml
+
+- name: Update messaging service
+  shell: npm update ../services/messaging
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/messaging", name: "messaging" }
+
+- name: Git commit and push for messaging service
+  shell: |
+    git add package-lock.json
+    git commit -m "chore: update package to latest"
+    git push
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/messaging", name: "messaging" }
+
+- name: Update data collection service
+  shell: npm update ../services/data-collection-service
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/data-collection-service", name: "data-collection-service" }
+
+- name: Git commit and push for data collection service
+  shell: |
+    git add package-lock.json
+    git commit -m "chore: update package to latest"
+    git push
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/data-collection-service", name: "data-collection-service" }
+
+- name: Update data processing hub service
+  shell: npm update ../services/data-processing-hub
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/data-processing-hub", name: "data-processing-hub" }
+
+- name: Git commit and push for data processing hub service
+  shell: |
+    git add package-lock.json
+    git commit -m "chore: update package to latest"
+    git push
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/data-processing-hub", name: "data-processing-hub" }
+
+- name: Update job scheduler service
+  shell: npm update ../services/job-scheduler-service
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/job-scheduler-service", name: "job-scheduler-service" }
+
+- name: Git commit and push for job scheduler service
+  shell: |
+    git add package-lock.json
+    git commit -m "chore: update package to latest"
+    git push
+  args:
+    chdir: "{{ item.path }}"
+  with_items:
+    - { path: "../services/job-scheduler-service", name: "job-scheduler-service" }
