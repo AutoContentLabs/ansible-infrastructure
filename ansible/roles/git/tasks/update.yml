@@ -1,11 +1,10 @@
 # roles/git/tasks/update.yml
 
 - name: Update messaging service
-  shell: npm update ../services/messaging
+  shell: npm update
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/messaging", name: "messaging" }
+    chdir: "../services/messaging"
+  ignore_errors: yes
 
 - name: Git commit and push for messaging service
   shell: |
@@ -13,16 +12,13 @@
     git commit -m "chore: update package to latest"
     git push
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/messaging", name: "messaging" }
+    chdir: "../services/messaging"
 
 - name: Update data collection service
-  shell: npm update ../services/data-collection-service
+  shell: npm update
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/data-collection-service", name: "data-collection-service" }
+    chdir: "../services/data-collection-service"
+  ignore_errors: yes
 
 - name: Git commit and push for data collection service
   shell: |
@@ -30,16 +26,13 @@
     git commit -m "chore: update package to latest"
     git push
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/data-collection-service", name: "data-collection-service" }
+    chdir: "../services/data-collection-service"
 
 - name: Update data processing hub service
-  shell: npm update ../services/data-processing-hub
+  shell: npm update
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/data-processing-hub", name: "data-processing-hub" }
+    chdir: "../services/data-processing-hub"
+  ignore_errors: yes
 
 - name: Git commit and push for data processing hub service
   shell: |
@@ -47,16 +40,13 @@
     git commit -m "chore: update package to latest"
     git push
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/data-processing-hub", name: "data-processing-hub" }
+    chdir: "../services/data-processing-hub"
 
 - name: Update job scheduler service
-  shell: npm update ../services/job-scheduler-service
+  shell: npm update
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/job-scheduler-service", name: "job-scheduler-service" }
+    chdir: "../services/job-scheduler-service"
+  ignore_errors: yes
 
 - name: Git commit and push for job scheduler service
   shell: |
@@ -64,6 +54,4 @@
     git commit -m "chore: update package to latest"
     git push
   args:
-    chdir: "{{ item.path }}"
-  with_items:
-    - { path: "../services/job-scheduler-service", name: "job-scheduler-service" }
+    chdir: "../services/job-scheduler-service"
