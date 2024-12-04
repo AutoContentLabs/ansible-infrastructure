@@ -1,5 +1,3 @@
-# roles/git/tasks/update.yml
-
 - name: Ensure git submodules are initialized and updated
   git:
     repo: "{{ item.url }}"
@@ -20,8 +18,15 @@
   command: git submodule update --remote --recursive
   args:
     chdir: "{{ playbook_dir }}"
+  register: git_submodules_updated
+  ignore_errors: yes
+
+- name: Check if git submodules update was successful
+  debug:
+    msg: "Git submodules were successfully updated."
   when: git_submodules_updated.rc == 0
 
-- name: Print git submodule update completion message
+- name: Print git submodule update failure message
   debug:
-    msg: "All git submodules have been successfully updated."
+    msg: "Git submodules update failed."
+  when: git_submodules_updated.rc != 0
