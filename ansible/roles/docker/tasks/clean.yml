@@ -1,26 +1,38 @@
 # roles/docker/tasks/clean.yml
 
+- name: Gather list of running containers
+  command: docker ps -q
+  register: docker_ps_q
+
+- name: Gather list of all containers
+  command: docker ps -a -q
+  register: docker_ps_a_q
+
+- name: Gather list of dangling images
+  command: docker images -q --filter "dangling=true"
+  register: docker_images_q
+
 - name: Stop all running containers
   shell: docker stop $(docker ps -q)
-  when: docker ps -q != ""
+  when: docker_ps_q.stdout != ''
   ignore_errors: yes
 
 - name: Remove all containers
   shell: docker rm $(docker ps -a -q)
-  when: docker ps -q != ""
+  when: docker_ps_a_q.stdout != ''
   ignore_errors: yes
 
 - name: Remove unused volumes
-  shell: docker volume prune -f
+  command: docker volume prune -f
   ignore_errors: yes
 
 - name: Remove unused images
   shell: docker rmi $(docker images -q --filter "dangling=true")
-  when: docker images -q != ""
+  when: docker_images_q.stdout != ''
   ignore_errors: yes
 
 - name: Remove unused networks
-  shell: docker network prune -f
+  command: docker network prune -f
   ignore_errors: yes
 
 - name: Print cleanup completion message
