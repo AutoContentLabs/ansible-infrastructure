@@ -8,13 +8,13 @@
     update: yes
     recursive: yes
   loop:
-    - { path: "services/fetcher", url: "https://github.com/AutoContentLabs/fetcher.git" }
-    - { path: "services/messaging-utils", url: "https://github.com/AutoContentLabs/messaging-utils.git" }
-    - { path: "services/messaging", url: "https://github.com/AutoContentLabs/messaging.git" }
-    - { path: "services/databases", url: "https://github.com/AutoContentLabs/databases.git" }
-    - { path: "services/data-collection-service", url: "https://github.com/AutoContentLabs/data-collection-service.git" }
-    - { path: "services/data-processing-hub", url: "https://github.com/AutoContentLabs/data-processing-hub.git" }
-    - { path: "services/job-scheduler-service", url: "https://github.com/AutoContentLabs/job-scheduler-service.git" }
+    - { path: "../services/fetcher", url: "https://github.com/AutoContentLabs/fetcher.git" }
+    - { path: "../services/messaging-utils", url: "https://github.com/AutoContentLabs/messaging-utils.git" }
+    - { path: "../services/messaging", url: "https://github.com/AutoContentLabs/messaging.git" }
+    - { path: "../services/databases", url: "https://github.com/AutoContentLabs/databases.git" }
+    - { path: "../services/data-collection-service", url: "https://github.com/AutoContentLabs/data-collection-service.git" }
+    - { path: "../services/data-processing-hub", url: "https://github.com/AutoContentLabs/data-processing-hub.git" }
+    - { path: "../services/job-scheduler-service", url: "https://github.com/AutoContentLabs/job-scheduler-service.git" }
 
 - name: Update git submodules recursively
   command: git submodule update --remote --recursive

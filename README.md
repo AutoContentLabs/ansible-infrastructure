@@ -10,9 +10,13 @@ AutoContentLabs-ansible-infrastructure/
 │   ├── playbook.yml             # Main Ansible playbook file
 │   ├── inventory                # Ansible inventory (target hosts)
 │   ├── roles
-│   │   ├── docker
-│   │   │   └── tasks
-│   │   │       └── main.yml     # Docker and Docker Compose tasks
+│   └───├── git
+│       │   └── tasks
+│       │       └── update.yml   # git submodules are initialized and updated
+│       └── docker
+│           └── tasks
+│               │── clean.yml     # All containers, volumes, images, and networks clean
+│               └── start.yml     # Create shared Docker network if not exists
 └── services
     ├── fetcher                  # Fetcher service
     ├── messaging-utils          # Messaging-utils service
