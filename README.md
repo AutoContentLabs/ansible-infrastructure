@@ -40,6 +40,7 @@ git submodule add https://github.com/AutoContentLabs/databases.git services/data
 git submodule add https://github.com/AutoContentLabs/data-collection-service.git services/data-collection-service
 git submodule add https://github.com/AutoContentLabs/data-processing-hub.git services/data-processing-hub
 git submodule add https://github.com/AutoContentLabs/job-scheduler-service.git services/job-scheduler-service
+git submodule add https://github.com/AutoContentLabs/workflow-manager.git services/workflow-manager
 
 # Commit the changes
 git commit -m "Add services as submodules"

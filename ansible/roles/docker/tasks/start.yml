@@ -8,6 +8,9 @@
 - name: Start databases service
   command: docker-compose -f ../services/databases/.docker/production/docker-compose.yml up -d
 
+- name: Start workflow manager service
+  command: docker-compose -f ../services/workflow-manager/.docker/production/docker-compose.yml up -d
+
 - name: Start data collection service
   command: docker-compose -f ../services/data-collection-service/.docker/production/docker-compose.yml up -d
 

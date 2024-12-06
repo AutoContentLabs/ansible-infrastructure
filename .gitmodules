@@ -19,3 +19,6 @@
 [submodule "services/job-scheduler-service"]
 	path = services/job-scheduler-service
 	url = https://github.com/AutoContentLabs/job-scheduler-service.git
+[submodule "services/workflow-manager"]
+	path = services/workflow-manager
+	url = https://github.com/AutoContentLabs/workflow-manager.git
